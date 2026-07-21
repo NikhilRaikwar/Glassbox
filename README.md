@@ -8,6 +8,7 @@ Glassbox is a no-login AI-literacy experience for ages 13-18, built for the Open
 
 **Live judge demo:** [glassbox-nu.vercel.app](https://glassbox-nu.vercel.app/)
 **Source repository:** [NikhilRaikwar/Glassbox](https://github.com/NikhilRaikwar/Glassbox)
+**Video demo:** [Watch on YouTube](https://youtu.be/rt21ZOx3N08)
 
 ## The learning loop
 
@@ -32,7 +33,8 @@ Glassbox is intentionally not a generic chatbot. It lets students practice a com
 | Source and licensing | The linked repository includes a runnable project, sample case data, setup instructions, and an MIT license. Ensure the repository is public before submitting, or share private access with the addresses listed in the Devpost form. |
 | Codex implementation | The **Built with Codex + GPT-5.6** section below records how Codex accelerated the implementation and where the key design decisions live. |
 | GPT-5.6 use | The server-only Evidence Coach uses the Responses API and Zod Structured Outputs to assess supplied receipts; deterministic TypeScript remains the source of truth for results. |
-| Still required before submit | Add a public or unlisted YouTube video under three minutes with voiceover, and enter the primary build chat's `/feedback` Session ID in Devpost. |
+| Video demo | [Public YouTube demo](https://youtu.be/rt21ZOx3N08) with a voiceover covering the working product, Codex, and GPT-5.6. |
+| Still required before submit | Enter the primary build chat's `/feedback` Session ID in Devpost. |
 
 ## Judge demo path
 
