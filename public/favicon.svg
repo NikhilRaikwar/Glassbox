@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-labelledby="title desc">
+  <title id="title">Glassbox</title>
+  <desc id="desc">A detective lens over graph paper</desc>
+  <rect width="64" height="64" rx="14" fill="#fffaf0"/>
+  <path d="M14 8.5v47M28 8.5v47M42 8.5v47M56 8.5v47M8.5 14h47M8.5 28h47M8.5 42h47M8.5 56h47" fill="none" stroke="#d9e4e3" stroke-width="1.2"/>
+  <rect x="7" y="7" width="50" height="50" rx="11" fill="none" stroke="#172333" stroke-width="3"/>
+  <circle cx="29" cy="29" r="13" fill="#ffeac0" stroke="#172333" stroke-width="3.5"/>
+  <circle cx="29" cy="29" r="7" fill="#fffaf0" stroke="#172333" stroke-width="2.5"/>
+  <path d="m38.5 38.5 10.5 10.5" fill="none" stroke="#172333" stroke-linecap="round" stroke-width="5"/>
+  <circle cx="25.5" cy="25.5" r="2.6" fill="#ec6d5a"/>
+</svg>

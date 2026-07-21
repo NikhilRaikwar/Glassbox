@@ -1,75 +1,92 @@
-# Glassbox — The AI Detective Lab
+# Glassbox - The AI Detective Lab
 
-Glassbox is a no-login AI-literacy case for students ages 13–18. In Case 01, **The StudyMatch Mystery**, a learner runs controlled tests on a fictional study-group recommender, writes an evidence-backed hypothesis, removes a harmful commute-zone proxy, and proves the simulated repair with a repeatable evaluation.
+> Students learn to test an AI decision system with evidence, repair a harmful rule, and prove the result.
 
-This is an educational simulation. It is not a fairness-certification tool and it does not use real student data.
+Glassbox is a no-login AI-literacy experience for ages 13-18, built for the OpenAI Build Week Education track. In **Case 01: The StudyMatch Mystery**, a learner investigates a fictional study-group recommender, gathers controlled-test evidence, writes a hypothesis, repairs the simulated model, and verifies the result with a repeatable evaluation.
 
-## Quick start
+**This is a fictional educational simulation.** It uses no real student data and is not a fairness-certification tool.
 
-You need Node.js and npm — [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating).
+## The learning loop
+
+**Test -> collect evidence -> make a claim -> repair -> verify -> proof**
+
+Glassbox is intentionally not a generic chatbot. It lets students practice a compact scientific method for AI systems: change one variable, inspect the result, save a receipt, explain the evidence, and test whether a repair actually changed the outcome.
+
+## What makes the project judgeable
+
+- **No-login demo:** A one-click Judge demo works with no account or API key.
+- **Real model logic:** Scores, controlled-test checks, repair access, and fairness measurements come from a tested, pure TypeScript engine - never an LLM or static UI values.
+- **Meaningful AI use:** GPT-5.6 acts as a constrained Evidence Coach that assesses only the learner's selected receipts; it cannot alter scores or decide a model is fair.
+- **Proof, not a promise:** The completed case produces a computed evidence trail, before/after evaluation, educator peek, and a downloadable or printable proof card labelled **simulated model repair**.
+- **Resilient demo:** A transparent deterministic fallback preserves the full learning loop if no API key is configured or the live coach is unavailable.
+
+## Judge demo path
+
+1. From the landing page, choose **Judge demo**.
+2. In the Evidence Notebook, inspect the two seeded controlled receipts and the confounded comparison.
+3. Open **Repair Bench**, remove the `Zone C penalty`, retain the learning-relevant factors, and run the eight-pair evaluation.
+4. Open the Proof Card to inspect the evidence trail, local educator peek, and the downloadable or printable proof card.
+
+The seeded data is anonymous and fictional. The reference learner is Maya; an otherwise matched fictional learner in Zone C receives a 44-point lower pre-repair score. In `StudyMatch v0.8`, the commute-zone factor is removed and selected learning-relevant factors affect scoring for real.
+
+## Architecture
+
+```mermaid
+flowchart LR
+  A[Mission] --> B[Probe Lab]
+  B --> C[Deterministic case engine]
+  C --> D[Immutable test receipts]
+  D --> E[Evidence Notebook]
+  E --> F[Repair Bench]
+  F --> G[Eight-pair evaluation]
+  G --> H[Proof Card]
+
+  E -. optional coaching request .-> I[Server-only Evidence Coach]
+  I -. structured feedback .-> E
+
+  subgraph Browser - no login
+    B
+    C
+    D
+    E
+    F
+    G
+    H
+  end
+
+  subgraph Server - only when a key is configured
+    I
+  end
+```
+
+- `src/features/case-engine/` is the product source of truth. It deterministically scores both model versions, validates controlled experiments, creates immutable receipts, checks the evidence threshold, and calculates evaluation metrics.
+- `src/features/evidence-coach/` contains the typed TanStack Start server function, Zod output contract, constrained GPT-5.6 prompt, and deterministic fallback mapper.
+- `src/store/useGlassboxStore.ts` persists anonymous progress in browser local storage. It does not store API keys or student identities.
+
+## Run locally
+
+Prerequisite: Node.js 20 or later and npm.
 
 ```sh
-git clone <this-repository-url>
-cd <repository-name>
+git clone git@github.com:NikhilRaikwar/Glassbox-.git
+cd Glassbox-
 npm install
 npm run dev
 ```
 
-Open the local URL printed by Vite. No account, database, or API key is required for the complete judge path.
+Open the local URL printed by Vite. No account, database, or API key is required to complete the Judge demo path.
 
-To enable the optional live Evidence Coach, copy the example environment file, add a server-only key, and restart the dev server:
+### Optional live GPT-5.6 Evidence Coach
+
+The app is fully usable without a key. To use the optional live coach locally:
 
 ```powershell
 Copy-Item .env.example .env
 ```
 
-Set `OPENAI_API_KEY` in `.env`. The default `OPENAI_MODEL` is `gpt-5.6`. Never use a `VITE_` prefix for this key. `.env*` is ignored by Git except `.env.example`.
+Set the server-only `OPENAI_API_KEY` in `.env` and restart the dev server. `OPENAI_MODEL` defaults to `gpt-5.6`. Never use a `VITE_` prefix for the key, and never commit `.env`.
 
-## Built with
-
-- TanStack Start
-- TypeScript
-- React
-- Tailwind CSS
-
-## Judge demo path — works with no API key
-
-1. On the landing page, select **Judge demo**.
-2. The Evidence Notebook opens with two controlled, high-signal receipts and one confounded receipt from the fictional case.
-3. Read the claim–evidence map, then select **Open Repair Bench**.
-4. Remove the `Zone C penalty`, keep or add the learning-relevant factors, and run the **eight-pair evaluation**.
-5. Open the Proof Card and use **Download PNG proof card** or **Print proof card**.
-
-The judge demo seeds only anonymous, fictional local session data. It is replayable through **Reset demo** or **Replay Case 01**.
-
-## Sample case data
-
-The fixed reference profile is Maya: Robotics, Morning, Growing, Collaborative, Zone A, Standard accessibility. An otherwise matching fictional profile in Zone C receives a score 44 points lower in the pre-repair `StudyMatch v0.7` engine. Learners must repeat that kind of single-variable comparison before repair access is unlocked.
-
-The post-repair `StudyMatch v0.8` configuration removes the commute-zone factor. Its selected topic-alignment and collaboration-style factors are real configuration inputs to the scorer, not visual-only toggles.
-
-## Architecture
-
-```text
-Probe Lab → immutable receipts → Evidence Notebook → Repair Bench → Proof Card
-                     │                    │
-                     │                    └─ optional GPT-5.6 Evidence Coach
-                     │                       (schema-validated, server-only)
-                     └─ pure TypeScript case engine
-```
-
-- `src/features/case-engine/` is the product source of truth: versioned configurations, scoring, experiment validity, receipts, evidence threshold, and the eight-pair evaluation suite.
-- `src/features/evidence-coach/` holds the typed POST TanStack Start server function, Zod response contract, constrained GPT-5.6 prompt, and deterministic fallback mapper.
-- `src/store/useGlassboxStore.ts` persists anonymous local progress only. It never stores an API key or sends full user identity data.
-- Routes retain the warm paper/notebook experience while rendering computed engine values rather than mock metrics.
-
-## Evidence Coach: live and fallback behavior
-
-When `OPENAI_API_KEY` is present, the server function uses the official `openai` JavaScript SDK, the Responses API, `responses.parse`, and Zod Structured Outputs. It sends only selected anonymous receipt projections and the learner's hypothesis. The server adds a bounded timeout, handles refusals or invalid responses, and validates that returned receipt IDs were supplied by the learner.
-
-The model cannot calculate scores, decide whether a test is controlled, calculate fairness metrics, or unlock repair by itself. Those decisions stay in the tested deterministic engine.
-
-When no key is configured—or a timeout, refusal, validation failure, or network problem occurs—the app uses a visible deterministic local Evidence Coach fallback. The fallback preserves the same evidence threshold and gives the next best controlled experiment, so the full demo remains runnable without live AI. This repository's verification was performed in fallback mode; no live API call is claimed here.
+If the key is absent, a request fails, the model refuses, or the structured response cannot be validated, Glassbox clearly uses its deterministic local fallback. The fallback keeps the full learning loop available; it is not presented as a live AI response.
 
 ## Verify
 
@@ -78,38 +95,25 @@ npm run test
 npm run build
 ```
 
-The test suite covers the v0.7/v0.8 scorer behavior, controlled versus confounded receipts, evidence threshold, eight-pair evaluation, and fallback coach mapping.
+The test suite covers v0.7/v0.8 scoring, controlled-versus-confounded experiments, the evidence threshold, the eight-pair evaluation, and fallback coach mapping.
 
-## Privacy and data
+## Privacy and safety
 
-- All profiles are fictional.
-- No login, analytics SDK, database, tracking pixel, or student PII is used.
-- Session progress lives in the browser's local storage and can be reset safely.
-- Optional coach requests contain only selected anonymous receipt fields and a learner-entered hypothesis; they are not logged by this app.
+- Every profile is fictional; Glassbox has no login, database, analytics SDK, tracking pixel, or student PII.
+- Browser progress is local and can be reset or replayed safely.
+- Live coach requests contain only selected anonymous receipt fields and the learner's hypothesis.
+- Every completion artifact says **simulated model repair**, never "certified fair."
 
 ## Built with Codex + GPT-5.6
 
-This Build Week implementation was developed in the primary Codex session for this repository. Codex was used to inspect the existing TanStack Start app, extract the deterministic domain engine, wire the UI to stateful receipts and evaluations, add tests, and run the build/test verification.
+Glassbox was implemented in the primary Codex build session for this repository. Codex was used to evolve the existing TanStack Start prototype into a stateful product, extract a deterministic case engine, wire the learning flow, add the test suite, and verify the production build.
 
-The optional Evidence Coach is designed for GPT-5.6 through the official Responses API and Zod Structured Outputs. GPT-5.6 is constrained to assess supplied evidence; it does not determine model behavior. The no-key verification path used the deterministic fallback because this workspace did not provide an API key.
+The optional Evidence Coach is designed for GPT-5.6 using the official OpenAI JavaScript SDK, the Responses API, `responses.parse`, and Zod Structured Outputs. GPT-5.6 is deliberately constrained to assess supplied receipts and explain evidence; it never determines model behavior or metrics.
 
-Keep dated commits, this primary Codex session, and the `/feedback` Session ID from this build chat with the submission materials. Add the final session ID only after retrieving it from the main chat.
+## Submission readiness
 
-## Decision log
+Before submitting, make the deployment URL and a public or unlisted, voice-over product video available in the Devpost entry. Keep the dated Git commits, this primary Codex session, and the `/feedback` Session ID as Build Week evidence. Re-check the live event rules and Devpost form before final submission.
 
-See [DECISIONS.md](DECISIONS.md) for the product and technical choices made for the MVP. The short recording plan is in [DEMO_SCRIPT.md](DEMO_SCRIPT.md).
+## Decisions and license
 
-## 2:40 demo script
-
-- **0:00–0:15:** Show a controlled StudyMatch comparison and the receipt.
-- **0:15–0:55:** Pin two receipts, submit a claim, and show the evidence map.
-- **0:55–1:40:** Remove the proxy, add learning signals, and run the eight-pair evaluation.
-- **1:40–2:10:** Show the simulated-repair proof card, PNG export, and educator peek.
-- **2:10–2:35:** Show the deterministic case engine and server-only GPT-5.6 structured-output function.
-- **2:35–2:40:** “Don’t just use AI. Learn to test it.”
-
-Use the expanded [DEMO_SCRIPT.md](DEMO_SCRIPT.md) when recording. The final video must be public or unlisted, under three minutes, voiced over, and explain both Codex and GPT-5.6 use.
-
-## License
-
-MIT © 2026 Nikhil Raikwar. See [LICENSE](LICENSE).
+The key product and technical decisions are recorded in [DECISIONS.md](DECISIONS.md). Glassbox is released under the [MIT License](LICENSE), Copyright 2026 Nikhil Raikwar.
