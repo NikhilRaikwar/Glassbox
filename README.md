@@ -115,7 +115,8 @@ The test suite covers v0.7/v0.8 scoring, controlled-versus-confounded experiment
 
 ## Privacy and safety
 
-- Every profile is fictional; Glassbox has no login, database, analytics SDK, tracking pixel, or student PII.
+- Every profile is fictional; Glassbox has no login, database, tracking pixel, or student PII.
+- Vercel Web Analytics records aggregate page-visit data for the deployed site; it does not receive fictional case data, browser progress, learner hypotheses, or the server-only OpenAI API key.
 - Browser progress is local and can be reset or replayed safely.
 - Live coach requests contain only selected anonymous receipt fields and the learner's hypothesis.
 - Every completion artifact says **simulated model repair**, never "certified fair."
