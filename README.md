@@ -7,7 +7,7 @@ Glassbox is a no-login AI-literacy experience for ages 13-18, built for the Open
 **This is a fictional educational simulation.** It uses no real student data and is not a fairness-certification tool.
 
 **Live judge demo:** [glassbox-nu.vercel.app](https://glassbox-nu.vercel.app/)
-**Source repository:** [NikhilRaikwar/Glassbox-](https://github.com/NikhilRaikwar/Glassbox-)
+**Source repository:** [NikhilRaikwar/Glassbox](https://github.com/NikhilRaikwar/Glassbox)
 
 ## The learning loop
 
