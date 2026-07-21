@@ -34,6 +34,11 @@ function receiptForCoach(receipt: TestReceipt): EvidenceCoachInput["receipts"][n
     comparisonScore: receipt.comparisonScore,
     scoreDelta: receipt.scoreDelta,
     changedFields: [...receipt.changedFields],
+    changedValues: receipt.changedFields.map((field) => ({
+      field,
+      referenceValue: String(receipt.reference[field]),
+      comparisonValue: String(receipt.comparison[field]),
+    })),
     isControlled: receipt.isControlled,
   };
 }

@@ -8,6 +8,9 @@ const zoneReceipt = (id: string) => ({
   comparisonScore: 42,
   scoreDelta: 44,
   changedFields: ["zone"] as const,
+  changedValues: [
+    { field: "zone" as const, referenceValue: "A", comparisonValue: "C" },
+  ],
   isControlled: true,
 });
 

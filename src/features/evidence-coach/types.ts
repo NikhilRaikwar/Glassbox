@@ -9,6 +9,17 @@ export const EvidenceReceiptSchema = z.object({
   changedFields: z
     .array(z.enum(["topic", "availability", "skill", "collab", "zone", "a11y"]))
     .max(6),
+  // Only the values that changed are sent. Names and full profiles stay in the
+  // browser, while the coach gets enough evidence to assess a specific claim.
+  changedValues: z
+    .array(
+      z.object({
+        field: z.enum(["topic", "availability", "skill", "collab", "zone", "a11y"]),
+        referenceValue: z.string().min(1).max(80),
+        comparisonValue: z.string().min(1).max(80),
+      }),
+    )
+    .max(6),
   isControlled: z.boolean(),
 });
 

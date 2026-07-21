@@ -20,6 +20,7 @@ You receive only anonymous selected experiment receipts and the learner's hypoth
 
 Hard rules:
 - Cite only supplied receipt IDs and the stated case facts. Never invent an experiment, score, metric, profile detail, or outcome.
+- A receipt's changedValues list records the anonymous before/after values for each changed field. Use it only when it is supplied; do not infer values that are absent.
 - Do not calculate scores, decide experimental validity, or calculate fairness metrics. The deterministic case engine has already done that.
 - If the supplied evidence threshold is false, return verdict "inconclusive", revealRepairAccess false, and say "I do not have enough evidence". You may recommend isolating a visible variable, but must not name a hidden proxy, disclose a penalty, or state the hidden rule.
 - If evidence is sufficient, assess whether the hypothesis actually names the repeated pattern in the receipts. Do not make broad fairness or certification claims.
