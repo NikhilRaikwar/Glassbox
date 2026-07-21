@@ -30,11 +30,11 @@ Glassbox is intentionally not a generic chatbot. It lets students practice a com
 | --- | --- |
 | Working project | The no-login [live judge demo](https://glassbox-nu.vercel.app/) starts directly in the product. |
 | Best-fit category | **Education** - Glassbox helps students investigate and repair a fictional AI decision system. |
-| Source and licensing | The linked repository includes a runnable project, sample case data, setup instructions, and an MIT license. Ensure the repository is public before submitting, or share private access with the addresses listed in the Devpost form. |
+| Source and licensing | The linked public repository includes a runnable project, sample case data, setup instructions, and the MIT license. |
 | Codex implementation | The **Built with Codex + GPT-5.6** section below records how Codex accelerated the implementation and where the key design decisions live. |
 | GPT-5.6 use | The server-only Evidence Coach uses the Responses API and Zod Structured Outputs to assess supplied receipts; deterministic TypeScript remains the source of truth for results. |
 | Video demo | [Public YouTube demo](https://youtu.be/rt21ZOx3N08) with a voiceover covering the working product, Codex, and GPT-5.6. |
-| Still required before submit | Enter the primary build chat's `/feedback` Session ID in Devpost. |
+| Submission evidence | The primary build chat's `/feedback` Session ID was entered in the published Devpost submission. |
 
 ## Judge demo path
 
@@ -84,8 +84,8 @@ flowchart LR
 Prerequisite: Node.js 20 or later and npm.
 
 ```sh
-git clone git@github.com:NikhilRaikwar/Glassbox-.git
-cd Glassbox-
+git clone git@github.com:NikhilRaikwar/Glassbox.git
+cd Glassbox
 npm install
 npm run dev
 ```
@@ -126,9 +126,9 @@ Glassbox was implemented in the primary Codex build session for this repository.
 
 The optional Evidence Coach is designed for GPT-5.6 using the official OpenAI JavaScript SDK, the Responses API, `responses.parse`, and Zod Structured Outputs. GPT-5.6 is deliberately constrained to assess supplied receipts and explain evidence; it never determines model behavior or metrics.
 
-## Submission readiness
+## Submission record
 
-Before submitting, make the deployment URL and a public or unlisted, voice-over product video available in the Devpost entry. Keep the dated Git commits, this primary Codex session, and the `/feedback` Session ID as Build Week evidence. Re-check the live event rules and Devpost form before final submission.
+The published OpenAI Build Week entry links the live demo, public YouTube voice-over, public repository, and primary Codex `/feedback` Session ID. Keep the dated Git commits and primary build session as Build Week evidence; re-check live event rules if making a later entry update.
 
 ## Decisions and license
 
