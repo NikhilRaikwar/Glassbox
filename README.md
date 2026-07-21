@@ -6,6 +6,9 @@ Glassbox is a no-login AI-literacy experience for ages 13-18, built for the Open
 
 **This is a fictional educational simulation.** It uses no real student data and is not a fairness-certification tool.
 
+**Live judge demo:** [glassbox-nu.vercel.app](https://glassbox-nu.vercel.app/)
+**Source repository:** [NikhilRaikwar/Glassbox-](https://github.com/NikhilRaikwar/Glassbox-)
+
 ## The learning loop
 
 **Test -> collect evidence -> make a claim -> repair -> verify -> proof**
@@ -19,6 +22,17 @@ Glassbox is intentionally not a generic chatbot. It lets students practice a com
 - **Meaningful AI use:** GPT-5.6 acts as a constrained Evidence Coach that assesses only the learner's selected receipts; it cannot alter scores or decide a model is fair.
 - **Proof, not a promise:** The completed case produces a computed evidence trail, before/after evaluation, educator peek, and a downloadable or printable proof card labelled **simulated model repair**.
 - **Resilient demo:** A transparent deterministic fallback preserves the full learning loop if no API key is configured or the live coach is unavailable.
+
+## Build Week submission evidence
+
+| Devpost requirement | Glassbox evidence |
+| --- | --- |
+| Working project | The no-login [live judge demo](https://glassbox-nu.vercel.app/) starts directly in the product. |
+| Best-fit category | **Education** - Glassbox helps students investigate and repair a fictional AI decision system. |
+| Source and licensing | The linked repository includes a runnable project, sample case data, setup instructions, and an MIT license. Ensure the repository is public before submitting, or share private access with the addresses listed in the Devpost form. |
+| Codex implementation | The **Built with Codex + GPT-5.6** section below records how Codex accelerated the implementation and where the key design decisions live. |
+| GPT-5.6 use | The server-only Evidence Coach uses the Responses API and Zod Structured Outputs to assess supplied receipts; deterministic TypeScript remains the source of truth for results. |
+| Still required before submit | Add a public or unlisted YouTube video under three minutes with voiceover, and enter the primary build chat's `/feedback` Session ID in Devpost. |
 
 ## Judge demo path
 

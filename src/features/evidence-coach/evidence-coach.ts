@@ -9,7 +9,10 @@ import {
   type EvidenceCoachResponse,
 } from "./types";
 
-const COACH_TIMEOUT_MS = 9_000;
+// The live coach is intentionally bounded, but structured GPT-5.6 replies can
+// take longer than a fast local interaction. Keep enough headroom for a cold
+// serverless invocation while preserving the deterministic fallback.
+const COACH_TIMEOUT_MS = 25_000;
 
 const COACH_INSTRUCTIONS = `You are Glassbox Evidence Coach, a constrained reasoning layer for a fictional AI-literacy case for students aged 13–18.
 
@@ -70,7 +73,10 @@ async function requestLiveCoach(input: EvidenceCoachInput) {
           receipts: input.receipts,
           learnerHypothesis: input.hypothesis,
         }),
-        text: { format: zodTextFormat(EvidenceCoachResultSchema, "evidence_coach_result") },
+        text: {
+          verbosity: "low",
+          format: zodTextFormat(EvidenceCoachResultSchema, "evidence_coach_result"),
+        },
       },
       { signal: abortController.signal },
     );
