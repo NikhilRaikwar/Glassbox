@@ -100,11 +100,11 @@ function Repair() {
       )}
 
       <div className="grid gap-6 lg:grid-cols-2">
-        <section className="paper-card relative overflow-hidden p-6">
-          <div className="absolute -top-3 left-6 rounded-md bg-warn px-2 py-0.5 text-[10px] font-black uppercase tracking-widest text-white ink-border">
+        <section className="paper-card relative p-6 pt-10">
+          <div className="absolute left-6 top-0 rounded-b-md bg-warn px-2 py-0.5 text-[10px] font-black uppercase tracking-widest text-white ink-border">
             StudyMatch v0.7 · source configuration
           </div>
-          <div className="mt-3 space-y-3">
+          <div className="space-y-3">
             {BASELINE_FACTORS.map((factor) => {
               const removed = removedFactors.includes(factor.id);
               const proxy = factor.kind === "proxy";
@@ -139,11 +139,11 @@ function Repair() {
           </div>
         </section>
 
-        <section className="paper-card relative overflow-hidden p-6">
-          <div className="absolute -top-3 left-6 rounded-md bg-success px-2 py-0.5 text-[10px] font-black uppercase tracking-widest text-white ink-border">
+        <section className="paper-card relative p-6 pt-10">
+          <div className="absolute left-6 top-0 rounded-b-md bg-success px-2 py-0.5 text-[10px] font-black uppercase tracking-widest text-white ink-border">
             Build StudyMatch v0.8
           </div>
-          <div className="mt-3 space-y-3">
+          <div className="space-y-3">
             <div className="text-[11px] font-black uppercase tracking-widest text-ink-muted">
               Add learning-relevant signals
             </div>
